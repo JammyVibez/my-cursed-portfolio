@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Gojo Theme - Default */
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%; /* Limitless Blue */
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 263.4 70% 50.4%; /* Infinity Purple */
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 217.2 91.2% 59.8%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .cursed-glow {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.4), 0 0 60px rgba(59, 130, 246, 0.2);
+  }
+
+  .sukuna-glow {
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.4), 0 0 60px rgba(239, 68, 68, 0.2);
+  }
+
+  .anime-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 50%, hsl(var(--primary)) 100%);
+  }
+
+  .cursed-energy-bg {
+    background: radial-gradient(circle at center, hsl(var(--primary) / 0.1) 0%, transparent 70%),
+      radial-gradient(circle at 80% 20%, hsl(var(--accent) / 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 20% 80%, hsl(var(--primary) / 0.1) 0%, transparent 50%);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted) / 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.6);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.8);
+}
+
+/* Smooth animations */
+* {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Font families */
+.font-orbitron {
+  font-family: var(--font-orbitron);
+}
+
+.font-jetbrains {
+  font-family: var(--font-jetbrains);
+}
+
+/* Anime-inspired animations */
+@keyframes cursed-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes sukuna-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(239, 68, 68, 0.6);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes energy-flow {
+  0% {
+    transform: translateX(-100%) rotate(0deg);
+  }
+  100% {
+    transform: translateX(100vw) rotate(360deg);
+  }
+}
+
+.cursed-pulse {
+  animation: cursed-pulse 2s ease-in-out infinite;
+}
+
+.sukuna-pulse {
+  animation: sukuna-pulse 2s ease-in-out infinite;
+}
+
+.energy-particle {
+  animation: energy-flow 8s linear infinite;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  .font-orbitron {
+    letter-spacing: -0.02em;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --primary: 217.2 100% 70%;
+    --accent: 263.4 100% 60%;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .cursed-pulse,
+  .sukuna-pulse,
+  .energy-particle {
+    animation: none;
+  }
+
+  * {
+    transition: none !important;
+  }
+}
